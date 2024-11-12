@@ -1,0 +1,55 @@
+CREATE TABLE EMPREGADO (
+    Nome VARCHAR2(50),
+    RG NUMBER PRIMARY KEY,
+    CIC NUMBER,
+    Depto NUMBER,
+    RG_Supervisor NUMBER,
+    Salario NUMBER
+);
+
+
+CREATE TABLE DEPARTAMENTO (
+    Nome VARCHAR2(50),
+    Numero NUMBER PRIMARY KEY,
+    RG_Gerente NUMBER
+);
+
+CREATE TABLE PROJETO (
+    Nome VARCHAR2(50),
+    Numero NUMBER PRIMARY KEY,
+    Localizacao VARCHAR2(50)
+);
+CREATE TABLE DEPENDENTES (
+    RG_Responsavel NUMBER,
+    Nome_Dependentes VARCHAR2(50),
+    Nascimento DATE,
+    Relacao VARCHAR2(50),
+    Sexo VARCHAR2(10),
+    CONSTRAINT fk_responsavel
+        FOREIGN KEY (RG_Responsavel)
+        REFERENCES EMPREGADO(RG)
+);
+
+
+CREATE TABLE DEPARTAMENTO_PROJETO (
+    ID_Depto NUMBER,
+    ID_Projeto NUMBER,
+    CONSTRAINT fk_departamento
+        FOREIGN KEY (ID_Depto)
+        REFERENCES DEPARTAMENTO(Numero),
+    CONSTRAINT fk_projeto
+        FOREIGN KEY (ID_Projeto)
+        REFERENCES PROJETO(Numero)
+);
+
+
+CREATE TABLE DEPARTAMENTO_PROJETO (
+    ID_Depto NUMBER,
+    ID_Projeto NUMBER,
+    CONSTRAINT fk_departamento
+        FOREIGN KEY (ID_Depto)
+        REFERENCES DEPARTAMENTO(Numero),
+    CONSTRAINT fk_projeto
+        FOREIGN KEY (ID_Projeto)
+        REFERENCES PROJETO(Numero)
+);
